@@ -1,4 +1,4 @@
-from gendiff.parsers.parser import parser_arg
+from gendiff.parsers.parser import parser_args
 
 def main():
     args = parser_args()
