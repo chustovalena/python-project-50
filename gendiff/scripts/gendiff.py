@@ -1,5 +1,5 @@
 from gendiff.parsers.parser import parser_args
-from gendiff.parsers.open_file import open_file
+from gendiff.parsers.open_file import open_files
 from gendiff.parsers.generate_diff import gen_diff
 
 def main():
