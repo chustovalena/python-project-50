@@ -1,6 +1,7 @@
-from gendiff.parsers.parser import parser_args
-from gendiff.parsers.open_file import open_files
 from gendiff.parsers.generate_diff import gen_diff
+from gendiff.parsers.open_file import open_files
+from gendiff.parsers.parser import parser_args
+
 
 def main():
     args = parser_args()
@@ -10,7 +11,6 @@ def main():
     diff = gen_diff(data_a, data_b)
 
     print(diff)
-
 
 
 if __name__ == '__main__':
