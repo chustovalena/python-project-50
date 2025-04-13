@@ -1,5 +1,5 @@
 from gendiff.parsers.generate_diff import gen_diff
-
+import pytest
 
 def empty_data():
 	assert gen_diff({}, {}) == '{\n' + '\n}'
