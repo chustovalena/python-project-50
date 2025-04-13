@@ -20,3 +20,8 @@ lint:
 
 test:
 	pytest
+
+
+test-coverage:
+	coverage run -m pytest
+	coverage xml
