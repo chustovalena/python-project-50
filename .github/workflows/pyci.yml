@@ -22,6 +22,7 @@ jobs:
       - name: Run linter and pytest
         run: |
           make lint
+	  make test
       - name: Run test coverage
         run: |
           make test-coverage
