@@ -12,8 +12,8 @@ def test_no_second_data():
 def test_no_first_data():
 	assert gen_diff({}, {'hey': 'karen'}) == '{\n' + '  + hey: karen' + '\n}'
 
-def same_data():
-	assert gen_diff({'hello': 'world'},{'hello': 'world'}) == '{\n' + '    hey: karen' + '\n}'
+def test_same_data():
+	assert gen_diff({'hello': 'world'},{'hello': 'world'}) == '{\n' + '    hello: world' + '\n}'
 
-def in_a_and_in_b_but_different():
-	assert gen_diff({'hello': 'world'}, {'hello': 'sam'}) == '{\n' + '  - hello: world' + '\n' + '  + hello : sam' + '\n}'
+def test_in_a_and_in_b_but_different():
+	assert gen_diff({'hello': 'world'}, {'hello': 'sam'}) == '{\n' + '  - hello: world' + '\n' + '  + hello: sam' + '\n}'
