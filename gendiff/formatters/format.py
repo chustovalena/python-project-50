@@ -1,6 +1,3 @@
-from gendiff.parsers.generate_diff import gen_diff
-
-
 def formatting(diff, depth=0):
     lines = []
     indent = ' ' * (depth * 4)
