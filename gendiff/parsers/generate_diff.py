@@ -1,3 +1,6 @@
+from gendiff.formatters.format import formatting, res_formatting
+
+
 def gen_diff(data_a, data_b):
     unchanged = {key for key in data_a.keys() & data_b.keys() if data_a[key] == data_b[key]}
     common = data_a.keys() & data_b.keys() - unchanged
@@ -18,5 +21,18 @@ def gen_diff(data_a, data_b):
             diff[key] = {'status': 'added', 'value': data_b[key]}
         elif key in removed:
             diff[key] = {'status': 'removed', 'value': data_a[key]}
-            
+
     return diff
+
+
+def generate_diff(file_path1, file_path2, format_name = 'stylish'):
+    from gendiff.parsers.open_file import open_files
+
+    data_a, data_b = open_files(file_path1, file_path2)
+    diff = gen_diff(data_a, data_b)
+
+    if format_name == 'stylish':
+        lines = formatting(diff)
+        return res_formatting(lines)
+    else:
+        raise ValueError(f"Unknown format: {format_name}")
