@@ -1,14 +1,13 @@
-from gendiff.parsers.generate_diff import gen_diff
-from gendiff.parsers.open_file import open_files
+from gendiff.parsers.generate_diff import generate_diff
 from gendiff.parsers.parser import parser_args
 
 
 def main():
     args = parser_args()
 
-    data_a, data_b = open_files(args.first_file, args.second_file)
+    format_name = args.format or 'stylish'
 
-    diff = gen_diff(data_a, data_b)
+    diff = generate_diff(dargs.first_file, args.second_file, format_name)
 
     print(diff)
 
