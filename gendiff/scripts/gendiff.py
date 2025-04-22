@@ -7,7 +7,7 @@ def main():
 
     format_name = args.format or 'stylish'
 
-    diff = generate_diff(dargs.first_file, args.second_file, format_name)
+    diff = generate_diff(args.first_file, args.second_file, format_name)
 
     print(diff)
 
