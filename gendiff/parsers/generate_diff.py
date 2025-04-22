@@ -1,18 +1,22 @@
 def gen_diff(data_a, data_b):
-  data_a = dict(sorted(data_a.items()))
-  data_b = dict(sorted(data_b.items()))
-  diff = []
+    unchanged = {key for key in data_a.keys() & data_b.keys() if data_a[key] == data_b[key]}
+    common = data_a.keys() & data_b.keys() - unchanged
+    added = data_b.keys() - data_a.keys()
+    removed = data_a.keys() - data_b.keys()
 
-  for key in data_a.keys():
-      if key in data_b:
-          if data_a[key] == data_b[key]:
-              diff.append(f"    {key}: {data_a[key]}")
-          else:
-              diff.append(f"  - {key}: {data_a[key]}")
-              diff.append(f"  + {key}: {data_b[key]}")
-      else:
-          diff.append(f"  - {key}: {data_a[key]}")
-  for key in data_b.keys():
-      if key not in data_a:
-          diff.append(f"  + {key}: {data_b[key]}")
-  return '{\n' + '\n'.join(diff) + '\n}'
+    diff = {}
+
+    for key in sorted(data_a.keys() | data_b.keys()):
+        if key in unchanged:
+            diff[key] = {'status': 'unchanged', 'value': data_a[key]}
+        elif key in common:
+            if isinstance(data_a[key], dict) and isinstance(data_b[key], dict):
+                diff[key] = {'status': 'nested', 'children': gen_diff(data_a[key],data_b[key])}
+            else:
+                diff[key] = {'status': 'changed', 'old_value': data_a[key], 'new_value': data_b[key]}
+        elif key in added:
+            diff[key] = {'status': 'added', 'value': data_b[key]}
+        elif key in removed:
+            diff[key] = {'status': 'removed', 'value': data_a[key]}
+            
+    return diff
