@@ -9,23 +9,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-        # make depends on uv
+
       - name: Install dependencies
         run: |
           pip install uv
-	  pip install uv ruff
+          pip install uv ruff
           make install
+
       - name: Run linter and pytest
         run: |
           make lint
-	  make test
+          make test
+
       - name: Run test coverage
         run: |
           make test-coverage
+
       - name: SonarQubeScan
         uses: SonarSource/sonarqube-scan-action@v5
         env:
