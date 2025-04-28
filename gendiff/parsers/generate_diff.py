@@ -2,7 +2,9 @@ from gendiff.formatters.format import formatting, res_formatting
 
 
 def gen_diff(data_a, data_b):
-    unchanged = {key for key in data_a.keys() & data_b.keys() if data_a[key] == data_b[key]}
+    unchanged = {
+    key for key in data_a.keys() & data_b.keys() if data_a[key] == data_b[key]
+    }
     common = data_a.keys() & data_b.keys() - unchanged
     added = data_b.keys() - data_a.keys()
     removed = data_a.keys() - data_b.keys()
@@ -14,9 +16,16 @@ def gen_diff(data_a, data_b):
             diff[key] = {'status': 'unchanged', 'value': data_a[key]}
         elif key in common:
             if isinstance(data_a[key], dict) and isinstance(data_b[key], dict):
-                diff[key] = {'status': 'nested', 'children': gen_diff(data_a[key],data_b[key])}
+                diff[key] = {
+                'status': 'nested',
+                'children': gen_diff(data_a[key], data_b[key])
+                }
             else:
-                diff[key] = {'status': 'changed', 'old_value': data_a[key], 'new_value': data_b[key]}
+                diff[key] = {
+                'status': 'changed',
+                'old_value': data_a[key],
+                'new_value': data_b[key]
+                }
         elif key in added:
             diff[key] = {'status': 'added', 'value': data_b[key]}
         elif key in removed:
@@ -25,7 +34,7 @@ def gen_diff(data_a, data_b):
     return diff
 
 
-def generate_diff(file_path1, file_path2, format_name = 'stylish'):
+def generate_diff(file_path1, file_path2, format_name='stylish'):
     from gendiff.parsers.open_file import open_files
 
     data_a, data_b = open_files(file_path1, file_path2)

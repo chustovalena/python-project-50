@@ -7,16 +7,25 @@ def formatting(diff, depth=0):
             lines.extend(formatting(value['children'], depth + 1))
             lines.append(f"{indent}    }}")
         elif value['status'] == 'changed':
-            lines.append(f"{indent}  - {key}: {format_value(value['old_value'], depth)}")
-            lines.append(f"{indent}  + {key}: {format_value(value['new_value'], depth)}")
+            lines.append(
+                f"{indent}  - {key}: {format_value(value['old_value'], depth)}"
+                )
+            lines.append(
+                f"{indent}  + {key}: {format_value(value['new_value'], depth)}"
+                )
         elif value['status'] == 'added':
-            lines.append(f"{indent}  + {key}: {format_value(value['value'], depth)}")
+            lines.append(
+                f"{indent}  + {key}: {format_value(value['value'], depth)}"
+                )
         elif value['status'] == 'removed':
-            lines.append(f"{indent}  - {key}: {format_value(value['value'], depth)}")
+            lines.append(
+                f"{indent}  - {key}: {format_value(value['value'], depth)}"
+                )
         elif value['status'] == 'unchanged':
-            lines.append(f"{indent}    {key}: {format_value(value['value'], depth)}")
+            lines.append(
+                f"{indent}    {key}: {format_value(value['value'], depth)}"
+                )
     return lines
-
 
 
 def format_value(value, depth):
@@ -31,7 +40,6 @@ def format_value(value, depth):
         return '\n'.join(lines)
     else:
         return str(value)
-
 
 
 def res_formatting(lines):

@@ -1,6 +1,8 @@
 import json
-import yaml
 from pathlib import Path
+
+import yaml
+
 
 def open_files(file1_path, file2_path):
 	file_path = Path(file1_path)
