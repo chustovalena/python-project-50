@@ -6,4 +6,4 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=chustovalena_python-project-50&metric=coverage)](https://sonarcloud.io/summary/new_code?id=chustovalena_python-project-50)
 
 
-[![asciicast](https://asciinema.org/a/0nAEO34xlHIXWI6OzE6QpL5tI.svg)](https://asciinema.org/a/0nAEO34xlHIXWI6OzE6QpL5tI)
+[![asciicast](https://asciinema.org/a/5EuCP9Aq7B84K1TOYM4uwXKQC.svg)](https://asciinema.org/a/5EuCP9Aq7B84K1TOYM4uwXKQC)
