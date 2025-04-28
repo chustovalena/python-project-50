@@ -1,19 +1,19 @@
-from gendiff.parsers.generate_diff import generate_diff
+from gendiff.parsers.generate_diff import generate_diff, gen_diff
 import pytest
+from gendiff.formatters.format import formatting, res_formatting
 
-def test_empty_data():
-	assert generate_diff({}, {}) == '{\n' + '\n}'
+@pytest.mark.parametrize(
+	"data_a, data_b, expected",
+	[
+        ({}, {}, '{\n\n}'),
+        ({'hey': 'karen'}, {}, '{\n  - hey: karen\n}'),
+        ({}, {'hey': 'karen'}, '{\n  + hey: karen\n}'),
+        ({'hello': 'world'}, {'hello': 'world'}, '{\n    hello: world\n}'),
+        ({'hello': 'world'}, {'hello': 'sam'}, '{\n  - hello: world\n  + hello: sam\n}'),
+    ]
+)
 
-
-def test_no_second_data():
-	assert generate_diff({'hey': 'karen'}, {}) == '{\n' + '  - hey: karen' + '\n}'
-
-
-def test_no_first_data():
-	assert generate_diff({}, {'hey': 'karen'}) == '{\n' + '  + hey: karen' + '\n}'
-
-def test_same_data():
-	assert generate_diff({'hello': 'world'},{'hello': 'world'}) == '{\n' + '    hello: world' + '\n}'
-
-def test_in_a_and_in_b_but_different():
-	assert generate_diff({'hello': 'world'}, {'hello': 'sam'}) == '{\n' + '  - hello: world' + '\n' + '  + hello: sam' + '\n}'
+def test_gen_diff(data_a, data_b, expected):
+	diff = gen_diff(data_a, data_b)
+	lines = formatting(diff)
+	assert res_formatting(lines) == expected
