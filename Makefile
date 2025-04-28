@@ -19,9 +19,9 @@ lint:
 
 
 test:
-	pytest
+	uv run pytest
 
 
 test-coverage:
-	coverage run -m pytest
-	coverage xml
+	uv run coverage run -m pytest
+	uv run coverage xml
