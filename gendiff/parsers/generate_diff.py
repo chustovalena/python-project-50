@@ -49,6 +49,6 @@ def generate_diff(file_path1, file_path2, format_name='stylish'):
         lines = format_plain(diff)
         return res_formatting(lines)
     elif format_name == 'json':
-        return format_json(lines)
+        return format_json(diff)
     else:
         raise ValueError(f"Unknown format: {format_name}")
