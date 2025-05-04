@@ -12,7 +12,7 @@ def stringify(value):
     return str(value)
 
 
-def format_playn(diff, path=''):
+def format_plain(diff, path=''):
     lines = []
     for key, node in sorted(diff.items()):
         property_path = f"{path}.{key}" if path else key
