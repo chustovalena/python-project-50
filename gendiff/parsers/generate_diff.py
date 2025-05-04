@@ -1,5 +1,6 @@
 from gendiff.formatters.format import formatting, res_formatting
 from gendiff.formatters.format_plain import format_plain, res_formatting
+from gendiff.formatters.format_json import format_json
 
 
 def gen_diff(data_a, data_b):
@@ -47,5 +48,7 @@ def generate_diff(file_path1, file_path2, format_name='stylish'):
     elif format_name == 'plain':
         lines = format_plain(diff)
         return res_formatting(lines)
+    elif format_name == 'json':
+        return format_json(lines)
     else:
         raise ValueError(f"Unknown format: {format_name}")
