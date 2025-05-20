@@ -38,6 +38,10 @@ def format_value(value, depth):
             lines.append(f"{indent}    {key}: {format_value(v, depth + 1)}")
         lines.append(f"{bracket_indent}    }}")
         return '\n'.join(lines)
+    elif isinstance(value, bool):
+        return 'true' if value else 'false'
+    elif value is None:
+        return 'null'
     else:
         return str(value)
 
