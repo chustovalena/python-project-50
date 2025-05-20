@@ -1,6 +1,7 @@
-from gendiff.formatters.format import formatting, res_formatting as res_format
-from gendiff.formatters.format_plain import format_plain, res_formatting
+from gendiff.formatters.format import formatting
+from gendiff.formatters.format import res_formatting as res_format
 from gendiff.formatters.format_json import format_json
+from gendiff.formatters.format_plain import format_plain, res_formatting
 
 
 def gen_diff(data_a, data_b):

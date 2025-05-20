@@ -19,19 +19,22 @@ def format_plain(diff, path=''):
         status = node['status']
         if status == 'added':
             value = stringify(node['value'])
-            lines.append(f"Property '{property_path}' was added with value: {value}")
+            lines.append(
+                f"Property '{property_path}' was added with value: {value}"
+                )
         elif status == 'removed':
             lines.append(f"Property '{property_path}' was removed")
         elif status == 'changed':
             old = stringify(node['old_value'])
             new = stringify(node['new_value'])
-            lines.append(f"Property '{property_path}' was updated. From {old} to {new}")
+            lines.append(
+                f"Property '{property_path}' was updated. From {old} to {new}"
+                )
         elif status == 'nested':
             nested_result = format_plain(node['children'], property_path)
             if nested_result:
                 lines.extend(nested_result)
     return lines
-
 
 
 def res_formatting(lines):
