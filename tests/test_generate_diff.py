@@ -1,10 +1,12 @@
-import pytest
 import json
 
-from gendiff.parsers.generate_diff import gen_diff
-from gendiff.formatters.format import formatting, res_formatting as res_format
-from gendiff.formatters.format_plain import format_plain, res_formatting
+import pytest
+
+from gendiff.formatters.format import formatting
+from gendiff.formatters.format import res_formatting as res_format
 from gendiff.formatters.format_json import format_json
+from gendiff.formatters.format_plain import format_plain, res_formatting
+from gendiff.parsers.generate_diff import gen_diff
 
 
 @pytest.mark.parametrize(
@@ -28,15 +30,15 @@ def test_gen_diff_stylish(data_a, data_b, expected):
 
 @pytest.mark.parametrize(
     "data_a, data_b, expected",
-    [   
-        (   
+    [
+        (
             {'hello': 'world'}, {'hello': 'sam'},
             "Property 'hello' was updated. From 'world' to 'sam'"),
         (
-            {'a':1}, {'a':1, 'b':True},
+            {'a': 1}, {'a': 1, 'b': True},
             "Property 'b' was added with value: true"),
         (
-            {'a':1, 'b': 2}, {'b': 2},
+            {'a': 1, 'b': 2}, {'b': 2},
             "Property 'a' was removed"),
     ]
 )
