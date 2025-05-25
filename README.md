@@ -3,7 +3,6 @@
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=chustovalena_python-project-50&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=chustovalena_python-project-50)
 
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=chustovalena_python-project-50&metric=coverage)](https://sonarcloud.io/summary/new_code?id=chustovalena_python-project-50)
-
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=chustovalena_python-project-50&metric=coverage&branch=main)](https://sonarcloud.io/summary/new_code?id=chustovalena_python-project-50)
 
 [![asciicast](https://asciinema.org/a/8P2NjmvIQBcy2zL9OluVX0G2v.svg)](https://asciinema.org/a/8P2NjmvIQBcy2zL9OluVX0G2v)
