@@ -48,7 +48,6 @@ def test_gen_diff_stylish(data_a, data_b, expected):
             "Property 'a.c' was updated. From 2 to 4")
     ]
 )
-# Property 'common.setting6.doge.wow' was updated. From '' to 'so much'
 def test_gen_diff_plain(data_a, data_b, expected):
     diff = gen_diff(data_a, data_b)
     lines = format_plain(diff)
@@ -61,6 +60,7 @@ def test_gen_diff_plain(data_a, data_b, expected):
         ({'key': 'value'}, {'key': 'value'}),
         ({'key': 'value'}, {'key': 'new_value'}),
         ({}, {'key': 'value'}),
+        ({'a': {'b': 1, 'c': 2}}, {'a': {'b': 1, 'd': 4}}),
     ]
 )
 def test_gen_diff_json(data_a, data_b):
@@ -85,4 +85,4 @@ def test_generate_diff(tmp_path):
     assert result == '{\n  + another: 123\n    key: value\n}'
     diff = gen_diff(data1, data2)
     assert generate_diff(file1, file2, 'json') == json.dumps(diff, indent=4)
-
+    
