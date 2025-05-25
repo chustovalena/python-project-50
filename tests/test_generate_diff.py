@@ -85,4 +85,6 @@ def test_generate_diff(tmp_path):
     assert result == '{\n  + another: 123\n    key: value\n}'
     diff = gen_diff(data1, data2)
     assert generate_diff(file1, file2, 'json') == json.dumps(diff, indent=4)
-    
+    with pytest.raises(ValueError) as excinfo:
+        generate_diff(file1, file2, format_name='invalid')
+    assert str(excinfo.value) == "Unknown format: invalid"
