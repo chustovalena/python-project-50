@@ -39,3 +39,4 @@ jobs:
             -Dsonar.projectKey=hexlet-boilerplates_python-package
             -Dsonar.organization=hexlet-boilerplates
             -Dsonar.python.coverage.reportPaths=coverage.xml
+
