@@ -20,6 +20,9 @@ from gendiff.parsers.generate_diff import gen_diff, generate_diff
             {'hello': 'world'}, {'hello': 'sam'},
             '{\n  - hello: world\n  + hello: sam\n}'
             ),
+        ({'a': {'b': 1, 'c': 2}}, {'a': {'b': 1, 'd': 4}},
+            '{\n    a: {\n        b: 1\n      - c: 2\n      + d: 4\n    }\n}'
+            )
     ]
 )
 def test_gen_diff_stylish(data_a, data_b, expected):
@@ -40,8 +43,12 @@ def test_gen_diff_stylish(data_a, data_b, expected):
         (
             {'a': 1, 'b': 2}, {'b': 2},
             "Property 'a' was removed"),
+        (   
+            {'a': {'b': 1, 'c': 2}}, {'a': {'b': 1, 'c': 4}},
+            "Property 'a.c' was updated. From 2 to 4")
     ]
 )
+#Property 'common.setting6.doge.wow' was updated. From '' to 'so much'
 def test_gen_diff_plain(data_a, data_b, expected):
     diff = gen_diff(data_a, data_b)
     lines = format_plain(diff)
